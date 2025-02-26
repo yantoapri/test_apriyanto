@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .w-100 {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>No 1</h2>
+    <div class="w-100" id="no1"></div>
+    <hr />
+    <h2>No 2</h2>
+    <div class="w-100" id="no2"></div>
+    <hr />
+    <h2>No 3</h2>
+    <div class="w-100" id="no3"></div>
+    <hr />
+    <h2>No 4</h2>
+    <input type="number" id="angka" />
+    <p id="huruf"></p>
+  </body>
+  <script>
+    // jawaban 1
+    var no1 = "";
+    for (let index = 50; index <= 100; index++) {
+      if (index % 5 == 0) {
+        if (index <= 60) no1 += index + " KURANG<br>";
+        else if (index > 60 && index <= 70) no1 += index + " CUKUP<br>";
+        else if (index > 70 && index <= 80) no1 += index + " BAIK<br>";
+        else if (index > 80) no1 += index + " LUAR BIASA<br>";
+      }
+    }
+    document.getElementById("no1").innerHTML = no1;
+    // jawaban 2
+    var fib = [0, 1];
+    var no2 = "";
+    for (let i = 2; i <= 20; i++) {
+      fib[i] = fib[i - 2] + fib[i - 1];
+      no2 += fib[i] + "<br>";
+    }
+    document.getElementById("no2").innerHTML = no2;
+    // jawaban 3
+    function segtigaKanan(n) {
+      let no3 = "";
+      for (let index = 0; index < n; index++) {
+        for (let i = 0; i < index; i++) {
+          no3 += "*";
+        }
+        no3 += "<br>";
+      }
+      document.getElementById("no3").innerHTML = no3;
+    }
+    segtigaKanan(10);
+    // jawaban 4
+    function terbilang(nilai) {
+      nilai = Math.floor(Math.abs(nilai));
+      var huruf = [
+        "",
+        "Satu",
+        "Dua",
+        "Tiga",
+        "Empat",
+        "Lima",
+        "Enam",
+        "Tujuh",
+        "Delapan",
+        "Sembilan",
+        "Sepuluh",
+        "Sebelas",
+      ];
+
+      var bagi = 0;
+      var penyimpanan = "";
+
+      if (nilai < 12) {
+        penyimpanan = " " + huruf[nilai];
+      } else if (nilai < 20) {
+        penyimpanan = terbilang(Math.floor(nilai - 10)) + " Belas";
+      } else if (nilai < 100) {
+        bagi = Math.floor(nilai / 10);
+        penyimpanan = terbilang(bagi) + " Puluh" + terbilang(nilai % 10);
+      } else if (nilai < 200) {
+        penyimpanan = " Seratus" + terbilang(nilai - 100);
+      } else if (nilai < 1000) {
+        bagi = Math.floor(nilai / 100);
+        penyimpanan = terbilang(bagi) + " Ratus" + terbilang(nilai % 100);
+      } else if (nilai < 2000) {
+        penyimpanan = " Seribu" + terbilang(nilai - 1000);
+      } else if (nilai < 1000000) {
+        bagi = Math.floor(nilai / 1000);
+        penyimpanan = terbilang(bagi) + " Ribu" + terbilang(nilai % 1000);
+      } else if (nilai < 1000000000) {
+        bagi = Math.floor(nilai / 1000000);
+        penyimpanan = terbilang(bagi) + " Juta" + terbilang(nilai % 1000000);
+      } else if (nilai < 1000000000000) {
+        bagi = Math.floor(nilai / 1000000000);
+        penyimpanan =
+          terbilang(bagi) + " Miliar" + terbilang(nilai % 1000000000);
+      } else if (nilai < 1000000000000000) {
+        bagi = Math.floor(nilai / 1000000000000);
+        penyimpanan =
+          terbilang(nilai / 1000000000000) +
+          " Triliun" +
+          terbilang(nilai % 1000000000000);
+      }
+
+      return penyimpanan;
+    }
+
+    document.getElementById("angka").addEventListener("keyup", function () {
+      var input = document.getElementById("angka").value;
+
+      let huruf = terbilang(input);
+
+      document.getElementById("huruf").innerHTML = huruf;
+    });
+  </script>
+</html>

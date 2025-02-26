@@ -1,0 +1,6 @@
+line 23 kurang tanda ","
+line 428 kurang tanda petik dua "
+line 437 "valueAsString" tidak ada isinya
+line 548 array "cleanA" tidak mendefinisikan index array yang akan di eksekusi
+line 540 regex tanda [ kurang penutup ]
+line 538 pemanggilan field b.attributes undefined dikarenakan fieldnya adalah "attribute"

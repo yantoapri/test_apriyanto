@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        border: 1px solid silver;
+        padding: 10px;
+        margin: 0 auto;
+        margin-top: 18vh;
+        width: 200px;
+      }
+      .w-100 {
+        width: 100%;
+      }
+      .mb-2 {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" id="login">
+      <h2>Login</h2>
+      <div class="mb-2">
+        <label for="">Username</label>
+        <input type="text" class="w-100" id="username" />
+      </div>
+      <div class="mb-2">
+        <label for="">Password</label>
+        <input type="password" class="w-100" id="password" />
+      </div>
+      <div class="mb-2">
+        <button onclick="login()">Login</button>
+      </div>
+    </div>
+    <div id="hasLogin">
+      <h3>Selamat Datang <span id="userLogin"></span></h3>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </body>
+  <script>
+    document.getElementById("hasLogin").style.display = "none";
+    function login() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      localStorage.setItem(
+        "login",
+        JSON.stringify({ username: username, password: password })
+      );
+      var lokal = localStorage.getItem("login");
+      lokal = lokal ? JSON.parse(lokal) : null;
+      document.getElementById("userLogin").innerText = lokal
+        ? lokal.username
+        : "";
+      document.getElementById("login").style.display = "none";
+      document.getElementById("hasLogin").style.display = "block";
+    }
+    function logout() {
+      localStorage.removeItem("login");
+      document.getElementById("login").style.display = "block";
+      document.getElementById("hasLogin").style.display = "none";
+    }
+  </script>
+</html>
